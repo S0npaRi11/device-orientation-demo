@@ -1,0 +1,43 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title> Step Counter </title>
+ </head>
+ <body>
+     <h1> This app measures the steps </h1>
+
+     <p> Alpha: <span id="alpha">  </span> </p>
+     <p> Beta: <span id="beta">  </span> </p>
+     <p> Gamma: <span id="gamma">  </span> </p>
+     <p> Absolute: <span id="abs">  </span> </p>
+ </body>
+
+ <script>
+    // grab all  DOM
+    const a = document.querySelector('#alpha')
+    const b = document.querySelector('#beta')
+    const c = document.querySelector('#gamma')
+
+    const abs = document.querySelector('#abs')
+
+    // handle orientation
+    const handleOrientation = (e) => {
+        let absolute = e.absolute
+        let alpha = e.alpha
+        let beta = e.beta
+        let gamma = e.gamma
+
+        a.innerHTML = alpha
+        b.innerHTML = beta
+        c.innerHTML = gamma
+        abs.innerHTML = absolute
+    }
+
+    // listen to deviceornentation event
+    window.addEventListener('deviceorientation', handleOrientation, false)
+ </script>
+
+ </html>
