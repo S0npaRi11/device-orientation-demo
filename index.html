@@ -13,6 +13,12 @@
      <p> Beta: <span id="beta">  </span> </p>
      <p> Gamma: <span id="gamma">  </span> </p>
      <p> Absolute: <span id="abs">  </span> </p>
+
+     <ul id="recorder">
+
+     </ul>
+
+     <button id="start"></button>
  </body>
 
  <script>
@@ -22,6 +28,11 @@
     const c = document.querySelector('#gamma')
 
     const abs = document.querySelector('#abs')
+
+    const startRecording = document.querySelector('#start')
+    const recorder = document.querySelector('#recorder')
+
+    let recording = false;
 
     // handle orientation
     const handleOrientation = (e) => {
@@ -34,6 +45,11 @@
         b.innerHTML = beta
         c.innerHTML = gamma
         abs.innerHTML = absolute
+
+        startRecording.addEventListener('click', () => {
+            let li = document.createElement('li')
+            li.innerHTML = `<span> Alpha: ${alpha} | Beta: ${beta} | Gamma: ${gamma} <span>`
+        })
     }
 
     // listen to deviceornentation event
