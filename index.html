@@ -64,6 +64,26 @@
             dataZ.push(value.z)
         })
 
+        dataX.forEach(d => {
+            mX+= d
+        })
+
+        dataY.forEach(d => {
+            mY+= d
+        })
+
+        dataZ.forEach(d => {
+            mZ+= d
+        })
+
+        // mX /= dataX.length
+        // mY /= dataY.length
+        // mZ /= dataZ.length
+
+        meanX.innerHTML = mX
+        meanY.innerHTML = mY
+        meanZ.innerHTML = mZ
+
         // draw X values
         var ctx1 = document.getElementById('chartX').getContext('2d');
         var myChart = new Chart(ctx1, {
@@ -112,25 +132,7 @@
             }
         });
 
-        dataX.forEach(d => {
-            mX+= d
-        })
-
-        dataY.forEach(d => {
-            mY+= d
-        })
-
-        dataZ.forEach(d => {
-            mZ+= d
-        })
-
-        // mX /= dataX.length
-        // mY /= dataY.length
-        // mZ /= dataZ.length
-
-        meanX.innerHTML = mX
-        meanY.innerHTML = mY
-        meanZ.innerHTML = mZ
+       
 
     }
 
