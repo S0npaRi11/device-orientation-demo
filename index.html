@@ -14,6 +14,8 @@
      <p> X: <span id="alpha">  </span> </p>
      <p> Y: <span id="beta">  </span> </p>
      <p> Z: <span id="gamma">  </span> </p>
+
+     <p> Read values: <span id="values">  </span> </p>
      <!-- <p> Absolute: <span id="abs">  </span> </p> -->
 
      <!-- <ul id="recorder">
@@ -38,6 +40,7 @@
 
     const start = document.querySelector('#start')
     const stop = document.querySelector('#stop')
+    const values = document.querySelector('#values')
     
 
     // const abs = document.querySelector('#abs')
@@ -134,6 +137,8 @@
         }
 
         readings.push(r)
+
+        values.innerHTML = readings.length
 
     })
 
