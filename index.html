@@ -16,6 +16,11 @@
      <p> Z: <span id="gamma">  </span> </p>
 
      <p> Read values: <span id="values">  </span> </p>
+     <p> Total labels: <span id="labels">  </span> </p>
+     <p> Total values of X: <span id="valX">  </span> </p>
+
+     <p
+
      <!-- <p> Absolute: <span id="abs">  </span> </p> -->
 
      <!-- <ul id="recorder">
@@ -41,6 +46,10 @@
     const start = document.querySelector('#start')
     const stop = document.querySelector('#stop')
     const values = document.querySelector('#values')
+
+    const labels = document.querySelector('#labels')
+    const valX = document.querySelector('#valX')
+
     
 
     // const abs = document.querySelector('#abs')
@@ -93,19 +102,24 @@
     // define chart here
     const showChart = () => {
 
-        let labels = []
+        let label = []
         let dataX = []
+
         
-        readings.forEach(reading => {
-            lebels.push(reading.timestamp)
-            dataX.push(reading.x)
+        readings.forEach(value => {
+            lebels.push(value.timestamp)
+            dataX.push(value.x)
         })
+
+        labels.innerHTML = label.length
+        valX.innerHTML = valX.dataX.length
+
         
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: labels,
+                labels: label,
                 datasets: [{
                     label: ' X axis reading ',
                     data: dataX,
