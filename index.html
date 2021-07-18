@@ -9,26 +9,32 @@
  <body>
      <!-- <h1> This app measures the steps </h1> -->
 
-     <!-- <p> Alpha: <span id="alpha">  </span> </p>
-     <p> Beta: <span id="beta">  </span> </p>
-     <p> Gamma: <span id="gamma">  </span> </p>
-     <p> Absolute: <span id="abs">  </span> </p>
+     <h1> Now trying Accelerometer!! </h1>
 
-     <ul id="recorder">
+     <p> X: <span id="alpha">  </span> </p>
+     <p> Y: <span id="beta">  </span> </p>
+     <p> Z: <span id="gamma">  </span> </p>
+     <!-- <p> Absolute: <span id="abs">  </span> </p> -->
 
-     </ul>
+     <!-- <ul id="recorder">
 
-     <button id="start"> Click to record </button> -->
+     </ul> -->
 
-     <h1> Shake with shakeJS!! </h1>
- </body>
+     <button id="start"> start </button>
+     <button id="stop"> stop </button>
 
- <script src="./shake.js"></script>
+
+ </body>addEventListener
+
+ <!-- <script src="./shake.js"></script> -->
  <script>
     // grab all  DOM
-    // const a = document.querySelector('#alpha')
-    // const b = document.querySelector('#beta')
-    // const c = document.querySelector('#gamma')
+    const a = document.querySelector('#alpha')
+    const b = document.querySelector('#beta')
+    const c = document.querySelector('#gamma')
+
+    const start = document.querySelector('#start')
+    const stop = document.querySelector('#stop')
 
     // const abs = document.querySelector('#abs')
 
@@ -59,20 +65,37 @@
     // // listen to deviceornentation event
     // window.addEventListener('deviceorientation', handleOrientation, false)
 
-    var myShakeEvent = new Shake({
-        threshold: 1, // optional shake strength threshold
-        timeout: 500 // optional, determines the frequency of event generation
-    });
-    myShakeEvent.start();
+    // var myShakeEvent = new Shake({
+    //     threshold: 1, // optional shake strength threshold
+    //     timeout: 500 // optional, determines the frequency of event generation
+    // });
+    // myShakeEvent.start();
 
-    window.addEventListener('shake', shakeEventDidOccur, false);
+    // window.addEventListener('shake', shakeEventDidOccur, false);
 
-    //function to call when shake occurs
-    function shakeEventDidOccur () {
+    // //function to call when shake occurs
+    // function shakeEventDidOccur () {
 
-        //put your own code here etc.
-        alert('shake!');
-    }
+    //     //put your own code here etc.
+    //     alert('shake!');
+    // }
+
+    // now, trying if accelerometer sensor api can achieve this
+
+    let acl = new Accelerometer({frequency: 60})
+    acl.addEventListener('reading', () => {
+        a.innerHTML = acl.x
+        b.innerHTML = acl.y
+        c.innerHTML = acl.z
+    })
+
+    start.addEventListener('click', () => {
+        acl.start()
+    })
+
+    stop.addEventListener('click', () => {
+        acl.stop()
+    })
 
  </script>
 
