@@ -29,7 +29,9 @@
      <button id="start"> start </button>
      <button id="stop"> stop </button>
 
-     <canvas id="myChart" width="400" height="400"></canvas>
+     <canvas id="chaetX" width="400" height="400"></canvas>
+     <canvas id="chaetY" width="400" height="400"></canvas>
+     <canvas id="chaetZ" width="400" height="400"></canvas>
 
 
  </body>
@@ -46,8 +48,8 @@
     const stop = document.querySelector('#stop')
     const values = document.querySelector('#values')
 
-    const labels = document.querySelector('#labels')
-    const valX = document.querySelector('#valX')
+    // const labels = document.querySelector('#labels')
+    // const valX = document.querySelector('#valX')
 
     
 
@@ -103,20 +105,24 @@
 
         let label = []
         let dataX = []
+        let dataY = []
+        let dataZ = []
 
         
         readings.forEach(value => {
             label.push(value.timestamp)
             dataX.push(value.x)
+            dataY.push(value.y)
+            dataZ.push(value.z)
         })
         
 
-        labels.innerHTML = label.length
-        valX.innerHTML = valX.length
+        // labels.innerHTML = label.length
+        // valX.innerHTML = valX.length
 
-        
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
+        // draw X values
+        var ctx1 = document.getElementById('chartX').getContext('2d');
+        var myChart = new Chart(ctx1, {
             type: 'line',
             data: {
                 labels: label,
@@ -124,7 +130,39 @@
                     label: ' X axis reading ',
                     data: dataX,
                     fill: false,
-                    borderColor: 'rgb(75, 192, 192)',
+                    borderColor: 'blue',
+                    tension: 0
+                }]
+            }
+        });
+
+        // draw Y values
+        var ctx2 = document.getElementById('chartY').getContext('2d');
+        var myChart = new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: label,
+                datasets: [{
+                    label: ' Y axis reading ',
+                    data: dataY,
+                    fill: false,
+                    borderColor: 'red',
+                    tension: 0
+                }]
+            }
+        });
+
+        // draw Z values
+        var ctx3 = document.getElementById('chartZ').getContext('2d');
+        var myChart = new Chart(ctx3, {
+            type: 'line',
+            data: {
+                labels: label,
+                datasets: [{
+                    label: ' Z axis reading ',
+                    data: dataZ,
+                    fill: false,
+                    borderColor: 'green',
                     tension: 0
                 }]
             }
