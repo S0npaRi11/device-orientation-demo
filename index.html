@@ -25,6 +25,9 @@
      <canvas id="chartX" width="800" height="400"></canvas>
      <canvas id="chartY" width="800" height="400"></canvas>
      <canvas id="chartZ" width="800" height="400"></canvas>
+     <canvas id="chartXvY" width="800" height="400"></canvas>
+     <canvas id="chartYvX" width="800" height="400"></canvas>
+
 
 
  </body>
@@ -127,6 +130,38 @@
                     data: dataZ,
                     fill: false,
                     borderColor: 'green',
+                    tension: 0
+                }]
+            }
+        });
+
+        // x vs y
+        var ctx4 = document.getElementById('chartXvY').getContext('2d');
+        var myChart = new Chart(ctx4, {
+            type: 'line',
+            data: {
+                labels: dataY,
+                datasets: [{
+                    label: ' X vs Y ',
+                    data: dataX,
+                    fill: false,
+                    borderColor: 'purple',
+                    tension: 0
+                }]
+            }
+        });
+
+        // y vs x
+        var ctx5 = document.getElementById('chartYvX').getContext('2d');
+        var myChart = new Chart(ctx5, {
+            type: 'line',
+            data: {
+                labels: dataX,
+                datasets: [{
+                    label: ' Y  vs X ',
+                    data: dataY,
+                    fill: false,
+                    borderColor: 'pink',
                     tension: 0
                 }]
             }
