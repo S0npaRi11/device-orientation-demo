@@ -7,8 +7,6 @@
      <title> Step Counter </title>
  </head>
  <body>
-     <!-- <h1> This app measures the steps </h1> -->
-
      <h1> Now trying Accelerometer!! </h1>
 
      <p> X: <span id="alpha">  </span> </p>
@@ -16,15 +14,10 @@
      <p> Z: <span id="gamma">  </span> </p>
 
      <p> Read values: <span id="values">  </span> </p>
-     <!-- <p> Total labels: <span id="labels">  </span> </p>
-     <p> Total values of X: <span id="valX">  </span> </p> -->
 
-
-     <!-- <p> Absolute: <span id="abs">  </span> </p> -->
-
-     <!-- <ul id="recorder">
-
-     </ul> -->
+     <!-- <p> mean X <span id="meanX">  </span> </p>
+     <p> mean Y <span id="meanY"></span> </p>
+     <p> mean Z <span id="meanZ">  </span> </p> -->
 
      <button id="start"> start </button>
      <button id="stop"> stop </button>
@@ -35,8 +28,6 @@
 
 
  </body>
-
- <!-- <script src="./shake.js"></script> -->
  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.1/chart.min.js "></script>
  <script>
     // grab all  DOM
@@ -48,54 +39,9 @@
     const stop = document.querySelector('#stop')
     const values = document.querySelector('#values')
 
-    // const labels = document.querySelector('#labels')
-    // const valX = document.querySelector('#valX')
-
-    
-
-    // const abs = document.querySelector('#abs')
-
-    // const startRecording = document.querySelector('#start')
-    // const recorder = document.querySelector('#recorder')
-
-    // let recording = false;
-
-    // // handle orientation
-    // const handleOrientation = (e) => {
-    //     let absolute = e.absolute
-    //     let alpha = e.alpha
-    //     let beta = e.beta
-    //     let gamma = e.gamma
-
-    //     a.innerHTML = alpha
-    //     b.innerHTML = beta
-    //     c.innerHTML = gamma
-    //     abs.innerHTML = absolute
-
-    //     startRecording.addEventListener('click', () => {
-    //         let li = document.createElement('li')
-    //         li.innerHTML = `<span> Alpha: ${alpha} | Beta: ${beta} | Gamma: ${gamma} <span>`
-    //         recorder.appendChild(li)
-    //     })
-    // }
-
-    // // listen to deviceornentation event
-    // window.addEventListener('deviceorientation', handleOrientation, false)
-
-    // var myShakeEvent = new Shake({
-    //     threshold: 1, // optional shake strength threshold
-    //     timeout: 500 // optional, determines the frequency of event generation
-    // });
-    // myShakeEvent.start();
-
-    // window.addEventListener('shake', shakeEventDidOccur, false);
-
-    // //function to call when shake occurs
-    // function shakeEventDidOccur () {
-
-    //     //put your own code here etc.
-    //     alert('shake!');
-    // }
+    // const meanX = document.querySelector('#meanX')
+    // const meanY = document.querySelector('#meanY')
+    // const meanZ = document.querySelector('#meanZ')
 
     let readings = []
 
@@ -108,6 +54,8 @@
         let dataY = []
         let dataZ = []
 
+        // let mX = 0, mY = 0,mZ = 0;
+
         
         readings.forEach(value => {
             label.push(value.timestamp)
@@ -115,10 +63,6 @@
             dataY.push(value.y)
             dataZ.push(value.z)
         })
-        
-
-        // labels.innerHTML = label.length
-        // valX.innerHTML = valX.length
 
         // draw X values
         var ctx1 = document.getElementById('chartX').getContext('2d');
@@ -168,23 +112,40 @@
             }
         });
 
+        // dataX.forEach(d => {
+        //     mX+= d
+        // })
+
+        // dataY.forEach(d => {
+        //     mY+= d
+        // })
+
+        // dataZ.forEach(d => {
+        //     mZ+= d
+        // })
+
+        // mX /= dataX.length
+        // mY /= dataY.length
+        // mZ /= dataZ.length
+
+        // meanX.innerHTML = mX
+        // meanY.innerHTML = mY
+        // meanZ.innerHTML = mZ
+
     }
 
 
     // now, trying if accelerometer sensor api can achieve this
-
-
-
     let acl = new Accelerometer({frequency: 10})
     acl.addEventListener('reading', () => {
-        a.innerHTML = acl.x
-        b.innerHTML = acl.y
-        c.innerHTML = acl.z
+        a.innerHTML = Math.round(acl.x)
+        b.innerHTML = Math.round(acl.y) 
+        c.innerHTML = Math.round(acl.z)
 
         const r = {
-            x: acl.x,
-            y: acl.y,
-            z: acl.z,
+            x: Math.round(acl.x),
+            y: Math.round(acl.y),
+            z: Math.round(acl.z),
             timestamp: acl.timestamp
         }
 
@@ -201,7 +162,7 @@
     stop.addEventListener('click', () => {
         acl.stop()
 
-        // populate reading values in the chart
+        // populate chart
         showChart()
     })
 
