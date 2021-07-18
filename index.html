@@ -82,7 +82,7 @@
 
     // now, trying if accelerometer sensor api can achieve this
 
-    let acl = new Accelerometer({frequency: 10})
+    let acl = new Accelerometer({frequency: 1})
     acl.addEventListener('reading', () => {
         a.innerHTML = acl.x
         b.innerHTML = acl.y
