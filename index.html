@@ -15,9 +15,9 @@
 
      <p> Read values: <span id="values">  </span> </p>
 
-     <!-- <p> mean X <span id="meanX">  </span> </p>
+     <p> mean X <span id="meanX">  </span> </p>
      <p> mean Y <span id="meanY"></span> </p>
-     <p> mean Z <span id="meanZ">  </span> </p> -->
+     <p> mean Z <span id="meanZ">  </span> </p>
 
      <button id="start"> start </button>
      <button id="stop"> stop </button>
@@ -39,9 +39,9 @@
     const stop = document.querySelector('#stop')
     const values = document.querySelector('#values')
 
-    // const meanX = document.querySelector('#meanX')
-    // const meanY = document.querySelector('#meanY')
-    // const meanZ = document.querySelector('#meanZ')
+    const meanX = document.querySelector('#meanX')
+    const meanY = document.querySelector('#meanY')
+    const meanZ = document.querySelector('#meanZ')
 
     let readings = []
 
@@ -112,25 +112,25 @@
             }
         });
 
-        // dataX.forEach(d => {
-        //     mX+= d
-        // })
+        dataX.forEach(d => {
+            mX+= d
+        })
 
-        // dataY.forEach(d => {
-        //     mY+= d
-        // })
+        dataY.forEach(d => {
+            mY+= d
+        })
 
-        // dataZ.forEach(d => {
-        //     mZ+= d
-        // })
+        dataZ.forEach(d => {
+            mZ+= d
+        })
 
-        // mX /= dataX.length
-        // mY /= dataY.length
-        // mZ /= dataZ.length
+        mX /= dataX.length
+        mY /= dataY.length
+        mZ /= dataZ.length
 
-        // meanX.innerHTML = mX
-        // meanY.innerHTML = mY
-        // meanZ.innerHTML = mZ
+        meanX.innerHTML = mX
+        meanY.innerHTML = mY
+        meanZ.innerHTML = mZ
 
     }
 
