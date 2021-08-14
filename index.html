@@ -59,7 +59,7 @@
 
         
 
-        // let mX = 0, mY = 0,mZ = 0;
+        let mX = 0, mY = 0,mZ = 0;
 
         
         readings.forEach(value => {
@@ -72,24 +72,24 @@
         meanX.innerText = typeof(dataX[0])
 
         dataX.forEach(d => {
-            mX+= parseInt(d)
+            mX+= d
         })
 
         dataY.forEach(d => {
-            mY+= parseInt(d)
+            mY+= d
         })
 
         dataZ.forEach(d => {
-            mZ+= parseInt(d)
+            mZ+= d
         })
 
         mX /= dataX.length
         mY /= dataY.length
         mZ /= dataZ.length
 
-        meanX.innerHTML = mX
-        meanY.innerHTML = mY
-        meanZ.innerHTML = mZ
+        meanX.innerText = mX
+        meanY.innerText = mY
+        meanZ.innerText = mZ
 
         // draw X values
         var ctx1 = document.getElementById('chartX').getContext('2d');
